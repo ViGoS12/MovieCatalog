@@ -1,31 +1,31 @@
 import './scss/App.scss'
 import { fetchMovies } from './redux/slices/movieSlice'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { RootState, useAppDispatch } from './redux/store'
 import { useSelector } from 'react-redux'
 
+import MovieList from './components/movieList'
+
 function App() {
   const dispatch = useAppDispatch()
-  const { items } = useSelector((state: RootState) => state.movie)
-  const [page, setPage] = useState(1)
+  const { items, loadingStatus } = useSelector(
+    (state: RootState) => state.movie
+  )
+  console.log(items)
 
   const getMovies = async () => {
-    dispatch(
-      fetchMovies({
-        page,
-      })
-    )
+    dispatch(fetchMovies({}))
   }
 
   useEffect(() => {
     getMovies()
-  }, [page])
+  }, [])
 
   return (
-    <div className='App'>
-      {items.map((movie) => (
-        <img src={movie.posterUrl} alt='' />
-      ))}
+    <div className='app'>
+      <div className='app__container'>
+        <MovieList items={items} />
+      </div>
     </div>
   )
 }

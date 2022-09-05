@@ -1,0 +1,22 @@
+@import '../../scss/variables.scss';
+
+.movieCard {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+
+  border-radius: 1rem;
+
+  &__img {
+    &:hover {
+      transition: 0.3s;
+      transform: scale(1.05);
+    }
+    &:not(:hover) {
+      transition: 0.3s;
+    }
+  }
+}

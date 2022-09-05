@@ -11,23 +11,17 @@ declare module '*.svg' {
 type Dispather<S> = Dispatch<SetStateAction<S>>
 
 type Movie = {
-  countries: {
-    country: string
-  }[]
-  genres: {
-    genre: string
-  }[]
-  imdbId: string
-  kinopoiskId: number
-  nameEn: string
-  posterUrl: string
-  posterUrlPreview: string
-  ratingImdb: number
-  ratingKinopoisk: number
-  type: string
-  year: number
+  id: 'string'
+  rank: 'string'
+  title: 'string'
+  fullTitle: 'string'
+  year: 'string'
+  image: 'string'
+  crew: 'string'
+  imDbRating: 'string'
+  imDbRatingCount: 'string'
 }
 
 type Filter = {
-  page: number
+  // page: number
 }

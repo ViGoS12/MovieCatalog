@@ -19,18 +19,12 @@ const initialState: IMovieState = {
 
 export const fetchMovies = createAsyncThunk<IRequest, Filter>(
   'movies/fetchMoviesStatus',
-  async (params) => {
-    const { page } = params
-
+  async () => {
     const { data } = await axios.get(
-      `https://kinopoiskapiunofficial.tech/api/v2.2/films/`,
+      `https://imdb-api.com/en/API/Top250Movies/`,
       {
-        headers: {
-          'X-API-KEY': '464e4dae-8d17-4dec-b509-8d68d73019db',
-          'Content-Type': 'application/json',
-        },
         params: {
-          page,
+          apiKey: 'k_s72tr442',
         },
       }
     )
