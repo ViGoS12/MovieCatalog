@@ -1,6 +1,8 @@
 .app {
   padding: 1rem;
+
   &__container {
+    margin: 0 auto;
     width: 1240px;
     display: flex;
     flex-direction: column;

@@ -9,14 +9,4 @@
   gap: 0.5rem;
 
   border-radius: 1rem;
-
-  &__img {
-    &:hover {
-      transition: 0.3s;
-      transform: scale(1.05);
-    }
-    &:not(:hover) {
-      transition: 0.3s;
-    }
-  }
 }

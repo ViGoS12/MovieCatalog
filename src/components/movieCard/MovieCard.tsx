@@ -10,11 +10,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ id, image, title }) => {
   return (
     <div className={styles.movieCard}>
       <div className={styles.movieCard__img}>
-        {image ? (
-          <img src={image} alt='' className={styles.movieCard} />
-        ) : (
-          <img src='https://st.kp.yandex.net/images/no-poster.gif' alt='' />
-        )}
+        <img src={image} alt='' className={styles.movieCard} />
       </div>
       <div className={styles.movieCard__title}>{title}</div>
     </div>
