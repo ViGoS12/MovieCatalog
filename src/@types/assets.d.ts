@@ -24,4 +24,5 @@ type Movie = {
 
 type Filter = {
   // page: number
+  urlRequest: string
 }

@@ -1,30 +1,21 @@
 import './scss/App.scss'
-import { fetchMovies } from './redux/slices/movieSlice'
-import { useEffect } from 'react'
-import { RootState, useAppDispatch } from './redux/store'
-import { useSelector } from 'react-redux'
 
-import MovieList from './components/movieList'
+import { Routes, Route } from 'react-router-dom'
+import { publicRoutes } from './routes'
 
 function App() {
-  const dispatch = useAppDispatch()
-  const { items, loadingStatus } = useSelector(
-    (state: RootState) => state.movie
-  )
-  console.log(items)
-
-  const getMovies = async () => {
-    dispatch(fetchMovies({}))
-  }
-
-  useEffect(() => {
-    getMovies()
-  }, [])
-
   return (
     <div className='app'>
       <div className='app__container'>
-        <MovieList items={items} />
+        <Routes>
+          {/* <Route path='/' element={<AppLayout />}> */}
+          {publicRoutes.map((route) => (
+            <Route
+              path={route.path}
+              element={route.element}
+              key={route.path}></Route>
+          ))}
+        </Routes>
       </div>
     </div>
   )

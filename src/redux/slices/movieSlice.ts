@@ -8,8 +8,6 @@ interface IMovieState {
 
 interface IRequest {
   items: Movie[]
-  total: number
-  totalPages: number
 }
 
 const initialState: IMovieState = {
@@ -19,15 +17,13 @@ const initialState: IMovieState = {
 
 export const fetchMovies = createAsyncThunk<IRequest, Filter>(
   'movies/fetchMoviesStatus',
-  async () => {
-    const { data } = await axios.get(
-      `https://imdb-api.com/en/API/Top250Movies/`,
-      {
-        params: {
-          apiKey: 'k_s72tr442',
-        },
-      }
-    )
+  async ({ urlRequest }) => {
+    const { data } = await axios.get(urlRequest, {
+      params: {
+        apiKey: 'k_s72tr442',
+      },
+    })
+
     return data
   }
 )
@@ -49,6 +45,7 @@ export const movieSlice = createSlice({
     builder.addCase(fetchMovies.rejected, (state, action) => {
       state.loadingStatus = 'error'
       state.items = []
+      console.log(state.loadingStatus)
     })
   },
 })
