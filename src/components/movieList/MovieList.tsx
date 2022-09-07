@@ -14,19 +14,17 @@ const MovieList: React.FC<MovieListProps> = ({ items }) => {
   const SwiperButtonNext = () => {
     const swiper = useSwiper()
     return (
-      <>
-        <button
-          className='btn'
-          style={{ right: -40 }}
-          onClick={() => {
-            swiper.slideNext()
-            swiper.slideNext()
-            swiper.slideNext()
-            swiper.slideNext()
-          }}>
-          <img className='img' src={rightArrow} alt='' />
-        </button>
-      </>
+      <button
+        className='btn'
+        style={{ right: -40 }}
+        onClick={() => {
+          swiper.slideNext()
+          swiper.slideNext()
+          swiper.slideNext()
+          swiper.slideNext()
+        }}>
+        <img className='img' src={rightArrow} alt='' />
+      </button>
     )
   }
   const SwiperButtonPrev = () => {
