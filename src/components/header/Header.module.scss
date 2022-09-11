@@ -1,13 +1,29 @@
 @import '../../scss/variables.scss';
 
 .header {
-  background-color: black;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
 
+  &__logo {
+    width: 3rem;
+    height: 3rem;
+  }
+
   &__title {
     font-size: 3rem;
+  }
+
+  &__list {
+    display: flex;
+    gap: 1rem;
+    flex: 1;
+  }
+  &__item {
+    opacity: 0.5;
+    &:hover {
+      opacity: 1;
+    }
   }
 }

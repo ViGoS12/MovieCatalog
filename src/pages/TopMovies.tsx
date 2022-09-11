@@ -1,25 +1,17 @@
-import { useEffect, useState } from 'react'
-
 import { RootState, useAppDispatch } from '../redux/store'
 import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
 import { fetchMovies } from './../redux/slices/movieSlice'
-
-import styles from './scss/Home.module.scss'
-
 import MovieGallery from '../components/movieGallery'
 
-const Home: React.FC = () => {
+const TopMovies: React.FC = () => {
   const dispatch = useAppDispatch()
   const { items, loadingStatus } = useSelector(
     (state: RootState) => state.movie
   )
 
-  const clickCard = (id: Movie['id']) => {
-    console.log('click on ', id)
-  }
-
   const [urlRequest, setUrlRequest] = useState(
-    'https://imdb-api.com/en/API/ComingSoon'
+    'https://imdb-api.com/en/API/Top250Movies'
   )
   console.log(items)
 
@@ -27,12 +19,16 @@ const Home: React.FC = () => {
     dispatch(fetchMovies({ urlRequest }))
   }
 
+  const clickCard = (id: Movie['id']) => {
+    console.log('click on ', id)
+  }
+
   useEffect(() => {
     getMovies()
   }, [])
 
   return (
-    <div className={styles.home}>
+    <div className='app'>
       <div className='app__container'>
         <MovieGallery items={items} clickCard={clickCard} />
       </div>
@@ -40,4 +36,4 @@ const Home: React.FC = () => {
   )
 }
 
-export default Home
+export default TopMovies
