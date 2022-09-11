@@ -1,7 +1,21 @@
 import styles from './MovieIdPage.module.scss'
+import { useParams } from 'react-router-dom'
+import { setMovie } from '../../redux/slices/moviesSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../../redux/store'
+import { useEffect } from 'react'
 
 const MovieIdPage = () => {
-  return <div className={styles.movieIdPage}>MovieIdPage</div>
+  const dispatch = useDispatch()
+  const { id } = useParams()
+
+  useEffect(() => {
+    dispatch(setMovie(id ?? ''))
+  }, [])
+
+  const { movie } = useSelector((state: RootState) => state.movie)
+
+  return <div className={styles.movieIdPage}>{movie.title}</div>
 }
 
 export default MovieIdPage

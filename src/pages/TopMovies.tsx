@@ -1,7 +1,7 @@
 import { RootState, useAppDispatch } from '../redux/store'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { fetchMovies } from './../redux/slices/movieSlice'
+import { fetchMovies } from '../redux/slices/moviesSlice'
 import MovieGallery from '../components/movieGallery'
 
 const TopMovies: React.FC = () => {

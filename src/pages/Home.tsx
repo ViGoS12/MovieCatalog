@@ -2,20 +2,22 @@ import { useEffect, useState } from 'react'
 
 import { RootState, useAppDispatch } from '../redux/store'
 import { useSelector } from 'react-redux'
-import { fetchMovies } from './../redux/slices/movieSlice'
+import { fetchMovies } from '../redux/slices/moviesSlice'
 
 import styles from './scss/Home.module.scss'
 
 import MovieGallery from '../components/movieGallery'
+import { useNavigate } from 'react-router-dom'
 
 const Home: React.FC = () => {
+  const router = useNavigate()
   const dispatch = useAppDispatch()
   const { items, loadingStatus } = useSelector(
     (state: RootState) => state.movie
   )
 
   const clickCard = (id: Movie['id']) => {
-    console.log('click on ', id)
+    router(`/movie/${id}`)
   }
 
   const [urlRequest, setUrlRequest] = useState(

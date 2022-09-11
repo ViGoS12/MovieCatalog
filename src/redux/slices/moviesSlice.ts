@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-interface IMovieState {
+interface IMoviesState {
   items: Movie[]
+  movie: Movie
   loadingStatus: 'loading' | 'success' | 'error'
 }
 
@@ -10,8 +11,20 @@ interface IRequest {
   items: Movie[]
 }
 
-const initialState: IMovieState = {
+const initialState: IMoviesState = {
   items: [],
+  movie: {
+    id: '',
+    rank: '',
+    title: '',
+    fullTitle: '',
+    year: '',
+    image: '',
+    crew: '',
+    imDbRating: '',
+    imDbRatingCount: '',
+  },
+
   loadingStatus: 'loading',
 }
 
@@ -28,10 +41,16 @@ export const fetchMovies = createAsyncThunk<IRequest, Filter>(
   }
 )
 
-export const movieSlice = createSlice({
+export const moviesSlice = createSlice({
   name: 'movies',
   initialState,
-  reducers: {},
+  reducers: {
+    setMovie(state: IMoviesState, action: PayloadAction<string>) {
+      state.movie = state.items.filter(
+        (movie: Movie) => movie.id === action.payload
+      )[0]
+    },
+  },
 
   extraReducers: (builder) => {
     builder.addCase(fetchMovies.pending, (state, action) => {
@@ -50,6 +69,6 @@ export const movieSlice = createSlice({
   },
 })
 
-export const {} = movieSlice.actions
+export const { setMovie } = moviesSlice.actions
 
-export default movieSlice.reducer
+export default moviesSlice.reducer
