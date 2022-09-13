@@ -1,0 +1,19 @@
+.btn {
+  top: 35%;
+
+  z-index: 1;
+  width: 2rem;
+  height: 2rem;
+  background: none;
+  font-size: 2rem;
+
+  &__prev {
+    position: absolute;
+    left: -40px;
+  }
+
+  &__next {
+    position: absolute;
+    right: -40px;
+  }
+}
