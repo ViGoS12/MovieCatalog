@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import axios from 'axios'
+import MovieService from './../../API/MovieService'
+import { APIKEY } from './../../constants/index'
 
 interface IMoviesState {
   items: Movie[]
@@ -28,16 +29,19 @@ const initialState: IMoviesState = {
   loadingStatus: 'loading',
 }
 
-export const fetchMovies = createAsyncThunk<IRequest, Filter>(
-  'movies/fetchMoviesStatus',
-  async ({ urlRequest }) => {
-    const { data } = await axios.get(urlRequest, {
-      params: {
-        apiKey: 'k_s72tr442',
-      },
-    })
+export const fetchComingSoonMovies = createAsyncThunk<IRequest>(
+  'movies/fetchComingSoonMoviesStatus',
+  function () {
+    const res = MovieService.getComingSoonMovies(APIKEY)
+    return res
+  }
+)
 
-    return data
+export const fetchTop250Movies = createAsyncThunk<IRequest>(
+  'movies/fetchTop250MoviesStatus',
+  function () {
+    const res = MovieService.getTop250Movies(APIKEY)
+    return res
   }
 )
 
@@ -53,18 +57,30 @@ export const moviesSlice = createSlice({
   },
 
   extraReducers: (builder) => {
-    builder.addCase(fetchMovies.pending, (state, action) => {
+    builder.addCase(fetchComingSoonMovies.pending, (state, action) => {
       state.loadingStatus = 'loading'
       state.items = []
     })
-    builder.addCase(fetchMovies.fulfilled, (state, action) => {
+    builder.addCase(fetchComingSoonMovies.fulfilled, (state, action) => {
       state.loadingStatus = 'success'
       state.items = action.payload.items
     })
-    builder.addCase(fetchMovies.rejected, (state, action) => {
+    builder.addCase(fetchComingSoonMovies.rejected, (state, action) => {
       state.loadingStatus = 'error'
       state.items = []
-      console.log(state.loadingStatus)
+    })
+
+    builder.addCase(fetchTop250Movies.pending, (state, action) => {
+      state.loadingStatus = 'loading'
+      state.items = []
+    })
+    builder.addCase(fetchTop250Movies.fulfilled, (state, action) => {
+      state.loadingStatus = 'success'
+      state.items = action.payload.items
+    })
+    builder.addCase(fetchTop250Movies.rejected, (state, action) => {
+      state.loadingStatus = 'error'
+      state.items = []
     })
   },
 })

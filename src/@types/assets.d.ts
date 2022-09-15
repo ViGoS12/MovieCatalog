@@ -21,8 +21,3 @@ type Movie = {
   imDbRating: string
   imDbRatingCount: string
 }
-
-type Filter = {
-  // page: number
-  urlRequest: string
-}

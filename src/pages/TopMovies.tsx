@@ -1,7 +1,7 @@
 import { RootState, useAppDispatch } from '../redux/store'
 import { useSelector } from 'react-redux'
-import { useEffect, useState } from 'react'
-import { fetchMovies } from '../redux/slices/moviesSlice'
+import { useEffect } from 'react'
+import { fetchTop250Movies } from '../redux/slices/moviesSlice'
 import MovieGallery from '../components/movieGallery'
 
 const TopMovies: React.FC = () => {
@@ -9,14 +9,10 @@ const TopMovies: React.FC = () => {
   const { items, loadingStatus } = useSelector(
     (state: RootState) => state.movie
   )
-
-  const [urlRequest, setUrlRequest] = useState(
-    'https://imdb-api.com/en/API/Top250Movies'
-  )
   console.log(items)
 
   const getMovies = async () => {
-    dispatch(fetchMovies({ urlRequest }))
+    dispatch(fetchTop250Movies())
   }
 
   const clickCard = (id: Movie['id']) => {

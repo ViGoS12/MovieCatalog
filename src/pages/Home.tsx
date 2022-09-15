@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 import { RootState, useAppDispatch } from '../redux/store'
 import { useSelector } from 'react-redux'
-import { fetchMovies } from '../redux/slices/moviesSlice'
+import { fetchComingSoonMovies } from '../redux/slices/moviesSlice'
 
 import styles from './scss/Home.module.scss'
 
@@ -20,13 +20,10 @@ const Home: React.FC = () => {
     router(`/movie/${id}`)
   }
 
-  const [urlRequest, setUrlRequest] = useState(
-    'https://imdb-api.com/en/API/ComingSoon'
-  )
   console.log(items)
 
   const getMovies = async () => {
-    dispatch(fetchMovies({ urlRequest }))
+    dispatch(fetchComingSoonMovies())
   }
 
   useEffect(() => {
