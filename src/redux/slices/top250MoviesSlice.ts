@@ -29,14 +29,6 @@ const initialState: IMoviesState = {
   loadingStatus: 'loading',
 }
 
-export const fetchComingSoonMovies = createAsyncThunk<IRequest>(
-  'movies/fetchComingSoonMoviesStatus',
-  function () {
-    const res = MovieService.getComingSoonMovies(APIKEY)
-    return res
-  }
-)
-
 export const fetchTop250Movies = createAsyncThunk<IRequest>(
   'movies/fetchTop250MoviesStatus',
   function () {
@@ -45,8 +37,8 @@ export const fetchTop250Movies = createAsyncThunk<IRequest>(
   }
 )
 
-export const moviesSlice = createSlice({
-  name: 'movies',
+export const top250MoviesSlice = createSlice({
+  name: 'top250Movies',
   initialState,
   reducers: {
     setMovie(state: IMoviesState, action: PayloadAction<string>) {
@@ -57,20 +49,7 @@ export const moviesSlice = createSlice({
   },
 
   extraReducers: (builder) => {
-    builder.addCase(fetchComingSoonMovies.pending, (state, action) => {
-      state.loadingStatus = 'loading'
-      state.items = []
-    })
-    builder.addCase(fetchComingSoonMovies.fulfilled, (state, action) => {
-      state.loadingStatus = 'success'
-      state.items = action.payload.items
-    })
-    builder.addCase(fetchComingSoonMovies.rejected, (state, action) => {
-      state.loadingStatus = 'error'
-      state.items = []
-    })
-
-    builder.addCase(fetchTop250Movies.pending, (state, action) => {
+    builder.addCase(fetchTop250Movies.pending, (state) => {
       state.loadingStatus = 'loading'
       state.items = []
     })
@@ -78,13 +57,13 @@ export const moviesSlice = createSlice({
       state.loadingStatus = 'success'
       state.items = action.payload.items
     })
-    builder.addCase(fetchTop250Movies.rejected, (state, action) => {
+    builder.addCase(fetchTop250Movies.rejected, (state) => {
       state.loadingStatus = 'error'
       state.items = []
     })
   },
 })
 
-export const { setMovie } = moviesSlice.actions
+export const { setMovie } = top250MoviesSlice.actions
 
-export default moviesSlice.reducer
+export default top250MoviesSlice.reducer

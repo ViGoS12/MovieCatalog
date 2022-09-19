@@ -1,13 +1,26 @@
 .swiper {
   display: flex;
   flex-direction: column;
-  position: initial !important;
-}
+  position: initial;
 
-.movieGallery {
-  position: relative;
-}
+  &-container {
+  }
 
-.img {
-  fill: white;
+  &-wrapper {
+  }
+
+  &-slide {
+    // flex-shrink: 1;
+  }
+
+  &-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    gap: 1rem;
+    transition-property: transform;
+    box-sizing: content-box;
+  }
 }

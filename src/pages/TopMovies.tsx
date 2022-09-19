@@ -1,15 +1,14 @@
 import { RootState, useAppDispatch } from '../redux/store'
 import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { fetchTop250Movies } from '../redux/slices/moviesSlice'
+import { fetchTop250Movies } from '../redux/slices/top250MoviesSlice'
 import MovieGallery from '../components/movieGallery'
 
 const TopMovies: React.FC = () => {
   const dispatch = useAppDispatch()
-  const { items, loadingStatus } = useSelector(
-    (state: RootState) => state.movie
+  const top250Movies = useSelector(
+    (state: RootState) => state.top250Movies.items
   )
-  console.log(items)
 
   const getMovies = async () => {
     dispatch(fetchTop250Movies())
@@ -26,7 +25,7 @@ const TopMovies: React.FC = () => {
   return (
     <div className='app'>
       <div className='app__container'>
-        <MovieGallery items={items} clickCard={clickCard} />
+        <MovieGallery items={top250Movies} clickCard={clickCard} />
       </div>
     </div>
   )
