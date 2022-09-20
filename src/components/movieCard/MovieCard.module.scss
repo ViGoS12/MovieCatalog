@@ -14,6 +14,7 @@
   border-radius: 1rem;
 
   &__img {
+    min-width: 150px;
     &:hover {
       opacity: 0.5;
     }

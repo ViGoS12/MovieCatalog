@@ -21,4 +21,14 @@ export default class MovieService {
     })
     return data
   }
+
+  static async getMovie(key: string, id: string) {
+    const { data } = await axios.get('https://imdb-api.com/en/API/Title/', {
+      params: {
+        apiKey: key,
+        id: id,
+      },
+    })
+    return data
+  }
 }

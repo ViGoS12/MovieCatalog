@@ -40,13 +40,7 @@ export const fetchTop250Movies = createAsyncThunk<IRequest>(
 export const top250MoviesSlice = createSlice({
   name: 'top250Movies',
   initialState,
-  reducers: {
-    setMovie(state: IMoviesState, action: PayloadAction<string>) {
-      state.movie = state.items.filter(
-        (movie: Movie) => movie.id === action.payload
-      )[0]
-    },
-  },
+  reducers: {},
 
   extraReducers: (builder) => {
     builder.addCase(fetchTop250Movies.pending, (state) => {
@@ -64,6 +58,6 @@ export const top250MoviesSlice = createSlice({
   },
 })
 
-export const { setMovie } = top250MoviesSlice.actions
+export const {} = top250MoviesSlice.actions
 
 export default top250MoviesSlice.reducer

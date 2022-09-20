@@ -40,13 +40,7 @@ export const fetchComingSoonMovies = createAsyncThunk<IRequest>(
 export const comingSoonMoviesSlice = createSlice({
   name: 'movies',
   initialState,
-  reducers: {
-    setMovie(state: IMoviesState, action: PayloadAction<string>) {
-      state.movie = state.items.filter(
-        (movie: Movie) => movie.id === action.payload
-      )[0]
-    },
-  },
+  reducers: {},
 
   extraReducers: (builder) => {
     builder.addCase(fetchComingSoonMovies.pending, (state, action) => {
@@ -64,6 +58,6 @@ export const comingSoonMoviesSlice = createSlice({
   },
 })
 
-export const { setMovie } = comingSoonMoviesSlice.actions
+export const {} = comingSoonMoviesSlice.actions
 
 export default comingSoonMoviesSlice.reducer
