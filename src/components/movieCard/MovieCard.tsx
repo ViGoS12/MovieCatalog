@@ -14,14 +14,14 @@ const MovieCard: React.FC<MovieCardProps> = ({
   clickCard,
 }) => {
   return (
-    <div className={styles.movieCard} onClick={() => clickCard(id)}>
-      <div className={styles.movieCard__img}>
+    <div className={styles.movieCard}>
+      <div className={styles.movieCard__wrapper} onClick={() => clickCard(id)}>
         {image ? (
-          <img src={image} alt='' className={styles.movieCard} />
+          <img src={image} alt='' className={styles.movieCard__img} />
         ) : (
           <img
             src='https://imdb-api.com/images/128x176/nopicture.jpg'
-            className={styles.movieCard}
+            className={styles.movieCard__img}
             alt=''
           />
         )}

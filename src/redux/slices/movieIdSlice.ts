@@ -289,7 +289,6 @@ export const comingSoonMoviesSlice = createSlice({
       (state, action: PayloadAction<TitleMovie>) => {
         state.loadingStatus = 'success'
         state.movie = action.payload
-        console.log(action.payload)
       }
     )
     builder.addCase(fetchMovie.rejected, (state, action) => {

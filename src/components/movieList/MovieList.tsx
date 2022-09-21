@@ -1,28 +1,24 @@
 import MovieCard from './../movieCard/'
 
 import styles from './MovieList.module.scss'
-import { useNavigate } from 'react-router-dom'
 
 type MovieListProps = {
   items: Movie[]
+  clickCard: (id: Movie['id']) => void
 }
 
-const MovieList: React.FC<MovieListProps> = ({ items }) => {
-  const router = useNavigate()
-
-  const clickCard = (id: Movie['id']) => {
-    router(`/movie/${id}`)
-  }
+const MovieList: React.FC<MovieListProps> = ({ items, clickCard }) => {
   return (
     <div className={styles.movieList}>
-      {/* {items.map((movie) => (
-        <MovieCard
-          id={movie.id}
-          image={movie.image}
-          title={movie.title}
-          clickCard={clickCard}
-        />
-      ))} */}
+      <div className={styles.movieList__grid}>
+        {items.map((movie) => (
+          <MovieCard
+            id={movie.id}
+            image={movie.image}
+            title={movie.rank + ' ' + movie.title}
+            clickCard={clickCard}></MovieCard>
+        ))}
+      </div>
     </div>
   )
 }
