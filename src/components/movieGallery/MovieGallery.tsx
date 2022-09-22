@@ -24,7 +24,7 @@ const MovieList: React.FC<MovieListProps> = ({
     <div className={styles.movieGallery}>
       <div className={styles.movieGallery__title}>
         {title}{' '}
-        <img className={styles.movieGallery__arrow} src={rightArrow} alt='' />
+        {/* <img className={styles.movieGallery__arrow} src={rightArrow} alt='' /> */}
       </div>
       <div>
         <Swiper

@@ -12,14 +12,14 @@ type Dispather<S> = Dispatch<SetStateAction<S>>
 
 type Movie = {
   id: string
-  rank: string
+  rank?: string
   title: string
-  fullTitle: string
-  year: string
+  fullTitle?: string
+  year?: string
   image: string
-  crew: string
+  crew?: string
   imDbRating: string
-  imDbRatingCount: string
+  imDbRatingCount?: string
 }
 
 type TitleMovie = {

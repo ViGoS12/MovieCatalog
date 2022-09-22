@@ -13,6 +13,7 @@ const MovieList: React.FC<MovieListProps> = ({ items, clickCard }) => {
       <div className={styles.movieList__grid}>
         {items.map((movie) => (
           <MovieCard
+            key={movie.id}
             id={movie.id}
             image={movie.image}
             title={movie.rank + ' ' + movie.title}
