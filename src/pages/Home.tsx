@@ -9,6 +9,7 @@ import styles from './scss/Home.module.scss'
 
 import MovieGallery from '../components/movieGallery'
 import { useNavigate } from 'react-router-dom'
+import SkeletonMovieCard from '../components/movieCard/SkeletonMovieCard'
 
 const Home: React.FC = () => {
   const router = useNavigate()
@@ -16,9 +17,15 @@ const Home: React.FC = () => {
   const top250Movies = useSelector(
     (state: RootState) => state.top250Movies.items
   )
+  const statusTop250Movies = useSelector(
+    (state: RootState) => state.top250Movies.loadingStatus
+  )
 
   const comingSoonMovies = useSelector(
     (state: RootState) => state.comingSoonMovies.items
+  )
+  const statusComingSoonMovies = useSelector(
+    (state: RootState) => state.comingSoonMovies.loadingStatus
   )
 
   const clickCard = (id: Movie['id']) => {
@@ -45,8 +52,13 @@ const Home: React.FC = () => {
           items={top250Movies}
           clickCard={clickCard}
           title='Top 250 Movies'
+          status={statusTop250Movies}
         />
-        <MovieGallery items={comingSoonMovies} clickCard={clickCard} />
+        <MovieGallery
+          items={comingSoonMovies}
+          clickCard={clickCard}
+          status={statusComingSoonMovies}
+        />
       </div>
     </div>
   )

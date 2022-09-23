@@ -18,6 +18,10 @@ const TopMovies: React.FC = () => {
     (state: RootState) => state.top250Movies.items
   )
 
+  const statusTop250Movies = useSelector(
+    (state: RootState) => state.top250Movies.loadingStatus
+  )
+
   const getMovies = async () => {
     dispatch(fetchTop250Movies())
   }
@@ -33,7 +37,11 @@ const TopMovies: React.FC = () => {
   return (
     <div className={styles.topMovies}>
       <div className={styles.topMovies__pageTitle}> Rating Top 250 movies</div>
-      <MovieList items={top250Movies} clickCard={clickCard} />
+      <MovieList
+        items={top250Movies}
+        clickCard={clickCard}
+        status={statusTop250Movies}
+      />
     </div>
   )
 }

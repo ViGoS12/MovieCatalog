@@ -13,7 +13,9 @@ const MovieIdPage = () => {
   const dispatch = useAppDispatch()
   const { id } = useParams()
 
-  const { movie } = useSelector((state: RootState) => state.movie)
+  const { movie, loadingStatus } = useSelector(
+    (state: RootState) => state.movie
+  )
 
   const getMovie = async () => {
     dispatch(fetchMovie(id ?? ''))
@@ -56,6 +58,7 @@ const MovieIdPage = () => {
           items={movie.similars}
           clickCard={clickCard}
           title={`With the movie «${movie.title}» watch`}
+          status={loadingStatus}
         />
       </div>
     </div>

@@ -9,16 +9,19 @@ import rightArrow from '../../assets/svg/rightArrow.svg'
 import SwipeButton from './../UI/swipeButton/index'
 
 import styles from './MovieGallery.module.scss'
+import SkeletonMovieCard from '../movieCard/SkeletonMovieCard'
 
 type MovieListProps = {
   items: Movie[]
   clickCard: (id: Movie['id']) => void
   title?: string
+  status: string
 }
 const MovieList: React.FC<MovieListProps> = ({
   items,
   clickCard,
   title = 'Recommend you to look',
+  status,
 }) => {
   return (
     <div className={styles.movieGallery}>
@@ -34,16 +37,24 @@ const MovieList: React.FC<MovieListProps> = ({
           onSlideChange={() => console.log('slide change')}>
           <SwipeButton image={leftArrow} direction='prev' />
 
-          {items.map((movie) => (
-            <SwiperSlide key={movie.id}>
-              <MovieCard
-                id={movie.id}
-                image={movie.image}
-                title={movie.title}
-                clickCard={() => clickCard(movie.id)}
-              />
-            </SwiperSlide>
-          ))}
+          {status === 'loading' ? (
+            <div className={styles.skeleton}>
+              {[...new Array(10)].map((_, i) => (
+                <SkeletonMovieCard key={i} />
+              ))}
+            </div>
+          ) : (
+            items.map((movie) => (
+              <SwiperSlide key={movie.id}>
+                <MovieCard
+                  id={movie.id}
+                  image={movie.image}
+                  title={movie.title}
+                  clickCard={() => clickCard(movie.id)}
+                />
+              </SwiperSlide>
+            ))
+          )}
 
           <SwipeButton image={rightArrow} direction='next' />
         </Swiper>
