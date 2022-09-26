@@ -31,4 +31,14 @@ export default class MovieService {
     })
     return data
   }
+
+  static async getPerson(key: string, id: string) {
+    const { data } = await axios.get('https://imdb-api.com/en/API/Name/', {
+      params: {
+        apiKey: key,
+        id: id,
+      },
+    })
+    return data
+  }
 }

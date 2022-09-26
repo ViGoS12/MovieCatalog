@@ -2,7 +2,7 @@ import MovieCard from '../movieCard'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/css'
-import './swiper.scss'
+import '../../scss/swiper.scss'
 
 import leftArrow from '../../assets/svg/leftArrow.svg'
 import rightArrow from '../../assets/svg/rightArrow.svg'
@@ -11,13 +11,13 @@ import SwipeButton from './../UI/swipeButton/index'
 import styles from './MovieGallery.module.scss'
 import SkeletonMovieCard from '../movieCard/SkeletonMovieCard'
 
-type MovieListProps = {
+type MovieGalleryProps = {
   items: Movie[]
   clickCard: (id: Movie['id']) => void
   title?: string
   status: string
 }
-const MovieList: React.FC<MovieListProps> = ({
+const MovieGallery: React.FC<MovieGalleryProps> = ({
   items,
   clickCard,
   title = 'Recommend you to look',
@@ -63,4 +63,4 @@ const MovieList: React.FC<MovieListProps> = ({
   )
 }
 
-export default MovieList
+export default MovieGallery

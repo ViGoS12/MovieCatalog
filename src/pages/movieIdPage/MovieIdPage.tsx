@@ -3,10 +3,11 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
 import { useEffect } from 'react'
-import { fetchMovie } from './../../redux/slices/movieIdSlice'
-import { useAppDispatch } from './../../redux/store'
+import { fetchMovie } from '../../redux/slices/movieIdSlice'
+import { useAppDispatch } from '../../redux/store'
 
-import MovieGallery from './../movieGallery/index'
+import MovieGallery from '../../components/movieGallery/index'
+import CastMovieGallery from '../../components/castMovieGallery'
 
 const MovieIdPage = () => {
   const router = useNavigate()
@@ -21,8 +22,12 @@ const MovieIdPage = () => {
     dispatch(fetchMovie(id ?? ''))
   }
 
-  const clickCard = (id: Movie['id']) => {
+  const clickMovieCard = (id: Movie['id']) => {
     router(`/movie/${id}`)
+  }
+
+  const clickPersonCard = (id: Movie['id']) => {
+    router(`/person/${id}`)
   }
 
   useEffect(() => {
@@ -48,18 +53,42 @@ const MovieIdPage = () => {
           </ul>
           <ul className={styles.watchParams__list}>
             <li className={styles.watchParams__item}>{movie.countries}</li>
+            {movie.genreList.map((genre) => (
+              <li key={genre.key} className={styles.watchParams__item}>
+                {genre.value}
+              </li>
+            ))}
           </ul>
           <p>{movie.plot}</p>
+          <div className={styles.movieIdPage__line}></div>
+          <div className={styles.watchOptions}>
+            <div className={styles.watchOptions__title}>Language</div>
+            <div className={styles.watchOptions__values}>{movie.languages}</div>
+          </div>
         </div>
       </div>
 
       <div className={styles.movieIdPage__flexImg}>
         <MovieGallery
           items={movie.similars}
-          clickCard={clickCard}
+          clickCard={clickMovieCard}
           title={`With the movie «${movie.title}» watch`}
           status={loadingStatus}
         />
+      </div>
+
+      <div className={styles.movieInfo}>
+        <div className={styles.movieInfo__directors}>
+          Diectors: {movie.directorList.map((directors) => directors.name)}
+        </div>
+
+        <div className={styles.movieInfo__actors}>
+          <CastMovieGallery
+            items={movie.actorList}
+            clickCard={clickPersonCard}
+            title='Actors'
+          />
+        </div>
       </div>
     </div>
   )

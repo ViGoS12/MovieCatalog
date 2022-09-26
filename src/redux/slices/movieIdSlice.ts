@@ -274,7 +274,7 @@ export const fetchMovie = createAsyncThunk<TitleMovie, string>(
   }
 )
 
-export const comingSoonMoviesSlice = createSlice({
+export const movieIdSlice = createSlice({
   name: 'movies',
   initialState,
   reducers: {},
@@ -298,6 +298,6 @@ export const comingSoonMoviesSlice = createSlice({
   },
 })
 
-export const {} = comingSoonMoviesSlice.actions
+export const {} = movieIdSlice.actions
 
-export default comingSoonMoviesSlice.reducer
+export default movieIdSlice.reducer
