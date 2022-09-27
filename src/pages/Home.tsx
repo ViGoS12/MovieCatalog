@@ -53,11 +53,13 @@ const Home: React.FC = () => {
           clickCard={clickCard}
           title='Top 250 Movies'
           status={statusTop250Movies}
+          cardWrapperWidth='160px'
         />
         <MovieGallery
           items={comingSoonMovies}
           clickCard={clickCard}
           status={statusComingSoonMovies}
+          cardWrapperWidth='160px'
         />
       </div>
     </div>

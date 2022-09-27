@@ -14,14 +14,19 @@ const MovieList: React.FC<MovieListProps> = ({ items, clickCard, status }) => {
     <div className={styles.movieList}>
       <div className={styles.movieList__grid}>
         {status === 'loading'
-          ? [...new Array(21)].map((_, i) => <SkeletonMovieCard key={i} />)
+          ? [...new Array(21)].map((_, i) => (
+              <div key={i} className={styles.movieList__skeleton}>
+                <SkeletonMovieCard />
+              </div>
+            ))
           : items.map((movie) => (
               <MovieCard
                 key={movie.id}
                 id={movie.id}
                 image={movie.image}
                 title={movie.rank + ' ' + movie.title}
-                clickCard={clickCard}></MovieCard>
+                clickCard={clickCard}
+              />
             ))}
       </div>
     </div>
