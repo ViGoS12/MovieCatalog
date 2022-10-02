@@ -47,11 +47,20 @@ const MovieIdPage = () => {
         <div className={styles.movieIdPage}>
           <div className={styles.movieIdPage__container}>
             <div className={styles.movieIdPage__leftside}>
-              <img
-                className={styles.movieIdPage__img}
-                src={movie.image}
-                alt=''
-              />
+              {trailer.linkEmbed ? (
+                <img
+                  className={styles.movieIdPage__img}
+                  src={movie.image}
+                  alt=''
+                />
+              ) : (
+                <iframe
+                  height='500px'
+                  width='100%'
+                  src={trailer.linkEmbed}
+                  title={trailer.title}
+                />
+              )}
             </div>
             <div className={styles.movieIdPage__rightside}>
               <div className={styles.movieIdPage__title}>

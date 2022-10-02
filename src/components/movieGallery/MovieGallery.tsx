@@ -10,6 +10,7 @@ import SwipeButton from './../UI/swipeButton/index'
 
 import styles from './MovieGallery.module.scss'
 import SkeletonMovieCard from '../movieCard/SkeletonMovieCard'
+import ErrorPage from './../../pages/ErrorPage'
 
 type MovieGalleryProps = {
   items: Movie[]
@@ -26,41 +27,47 @@ const MovieGallery: React.FC<MovieGalleryProps> = ({
   cardWrapperWidth,
 }) => {
   return (
-    <div className={styles.movieGallery}>
-      <div className={styles.movieGallery__title}>
-        {title}{' '}
-        {/* <img className={styles.movieGallery__arrow} src={rightArrow} alt='' /> */}
-      </div>
-      <div>
-        <Swiper
-          slidesPerView={6}
-          pagination={{ clickable: true }}
-          scrollbar={{ draggable: true }}
-          onSlideChange={() => console.log('slide change')}>
-          <SwipeButton image={leftArrow} direction='prev' />
+    <>
+      {items.length ? (
+        <div className={styles.movieGallery}>
+          <div className={styles.movieGallery__title}>
+            {title}{' '}
+            {/* <img className={styles.movieGallery__arrow} src={rightArrow} alt='' /> */}
+          </div>
+          <div>
+            <Swiper
+              slidesPerView={6}
+              pagination={{ clickable: true }}
+              scrollbar={{ draggable: true }}
+              onSlideChange={() => console.log('slide change')}>
+              <SwipeButton image={leftArrow} direction='prev' />
 
-          {status === 'loading'
-            ? [...new Array(10)].map((_, i) => (
-                <SwiperSlide key={i}>
-                  <SkeletonMovieCard />
-                </SwiperSlide>
-              ))
-            : items.map((movie) => (
-                <SwiperSlide key={movie.id}>
-                  <MovieCard
-                    id={movie.id}
-                    image={movie.image}
-                    title={movie.title}
-                    clickCard={() => clickCard(movie.id)}
-                    wrapperWidth={cardWrapperWidth}
-                  />
-                </SwiperSlide>
-              ))}
+              {status === 'loading'
+                ? [...new Array(10)].map((_, i) => (
+                    <SwiperSlide key={i}>
+                      <SkeletonMovieCard />
+                    </SwiperSlide>
+                  ))
+                : items.map((movie) => (
+                    <SwiperSlide key={movie.id}>
+                      <MovieCard
+                        id={movie.id}
+                        image={movie.image}
+                        title={movie.title}
+                        clickCard={() => clickCard(movie.id)}
+                        wrapperWidth={cardWrapperWidth}
+                      />
+                    </SwiperSlide>
+                  ))}
 
-          <SwipeButton image={rightArrow} direction='next' />
-        </Swiper>
-      </div>
-    </div>
+              <SwipeButton image={rightArrow} direction='next' />
+            </Swiper>
+          </div>
+        </div>
+      ) : (
+        <ErrorPage />
+      )}
+    </>
   )
 }
 
