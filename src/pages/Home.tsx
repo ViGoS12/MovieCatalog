@@ -9,7 +9,6 @@ import styles from './scss/Home.module.scss'
 
 import MovieGallery from '../components/movieGallery'
 import { useNavigate } from 'react-router-dom'
-import SkeletonMovieCard from '../components/movieCard/SkeletonMovieCard'
 
 const Home: React.FC = () => {
   const router = useNavigate()

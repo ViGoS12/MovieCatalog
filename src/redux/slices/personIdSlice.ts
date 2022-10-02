@@ -46,7 +46,6 @@ export const fetchPerson = createAsyncThunk<Person, string>(
   'movies/fetchMovieStatus',
   function (id) {
     const res = MovieService.getPerson(APIKEY, id)
-    console.log(res)
     return res
   }
 )

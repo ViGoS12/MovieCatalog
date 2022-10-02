@@ -41,4 +41,14 @@ export default class MovieService {
     })
     return data
   }
+
+  static async getTrailer(key: string, id: string) {
+    const { data } = await axios.get('https://imdb-api.com/en/API/Trailer/', {
+      params: {
+        apiKey: key,
+        id: id,
+      },
+    })
+    return data
+  }
 }

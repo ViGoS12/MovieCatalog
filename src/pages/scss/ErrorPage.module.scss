@@ -1,0 +1,17 @@
+.errorPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  &__title {
+    font-size: 2rem;
+  }
+
+  &__subtitle {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    opacity: 0.5;
+  }
+}

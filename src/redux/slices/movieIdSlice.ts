@@ -4,7 +4,9 @@ import { APIKEY } from '../../constants/index'
 
 interface IMoviesState {
   movie: TitleMovie
-  loadingStatus: 'loading' | 'success' | 'error'
+  trailer: Trailer
+  loadingMovieStatus: 'loading' | 'success' | 'error'
+  loadingTrailerStatus: 'loading' | 'success' | 'error'
 }
 
 const initialState: IMoviesState = {
@@ -262,14 +264,37 @@ const initialState: IMoviesState = {
     },
     errorMessage: '',
   },
-  loadingStatus: 'loading',
+  trailer: {
+    imDbId: '',
+    title: '',
+    fullTitle: '',
+    type: '',
+    year: '',
+    videoId: '',
+    videoTitle: '',
+    videoDescription: '',
+    thumbnailUrl: '',
+    uploadDate: '',
+    link: '',
+    linkEmbed: '',
+    errorMessage: '',
+  },
+  loadingMovieStatus: 'loading',
+  loadingTrailerStatus: 'loading',
 }
 
 export const fetchMovie = createAsyncThunk<TitleMovie, string>(
   'movies/fetchMovieStatus',
   function (id) {
     const res = MovieService.getMovie(APIKEY, id)
-    console.log(res)
+    return res
+  }
+)
+
+export const fetchTrailer = createAsyncThunk<Trailer, string>(
+  'movies/fetchTrailerStatus',
+  function (id) {
+    const res = MovieService.getTrailer(APIKEY, id)
     return res
   }
 )
@@ -281,19 +306,34 @@ export const movieIdSlice = createSlice({
 
   extraReducers: (builder) => {
     builder.addCase(fetchMovie.pending, (state, action) => {
-      state.loadingStatus = 'loading'
+      state.loadingMovieStatus = 'loading'
       state.movie = initialState.movie
     })
     builder.addCase(
       fetchMovie.fulfilled,
       (state, action: PayloadAction<TitleMovie>) => {
-        state.loadingStatus = 'success'
+        state.loadingMovieStatus = 'success'
         state.movie = action.payload
       }
     )
     builder.addCase(fetchMovie.rejected, (state, action) => {
-      state.loadingStatus = 'error'
+      state.loadingMovieStatus = 'error'
       state.movie = initialState.movie
+    })
+    builder.addCase(fetchTrailer.pending, (state, action) => {
+      state.loadingTrailerStatus = 'loading'
+      state.trailer = initialState.trailer
+    })
+    builder.addCase(
+      fetchTrailer.fulfilled,
+      (state, action: PayloadAction<Trailer>) => {
+        state.loadingTrailerStatus = 'success'
+        state.trailer = action.payload
+      }
+    )
+    builder.addCase(fetchTrailer.rejected, (state, action) => {
+      state.loadingTrailerStatus = 'error'
+      state.trailer = initialState.trailer
     })
   },
 })

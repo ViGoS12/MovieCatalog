@@ -14,7 +14,6 @@ const MovieIdPage = () => {
   const { person, loadingStatus } = useSelector(
     (state: RootState) => state.person
   )
-  console.log(person)
 
   const getPerson = async () => {
     dispatch(fetchPerson(id ?? ''))

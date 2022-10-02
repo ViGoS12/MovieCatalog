@@ -6,16 +6,16 @@
   align-items: center;
   text-align: center;
   gap: 0.5rem;
-  height: 100%;
 
   &__wrapper {
     cursor: pointer;
-    height: 100%;
   }
 
   &__img {
     border-radius: 0.5rem;
     width: 100%;
+    height: 220px;
+    object-fit: cover;
 
     &:hover {
       opacity: 0.5;
