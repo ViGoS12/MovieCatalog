@@ -9,6 +9,7 @@ import { useAppDispatch } from '../../redux/store'
 import MovieGallery from '../../components/movieGallery/index'
 import CastMovieGallery from '../../components/castMovieGallery'
 import ErrorPage from '../ErrorPage'
+import YoutubePlayer from './../../components/youtubePlayer/index'
 
 const MovieIdPage = () => {
   const router = useNavigate()
@@ -39,6 +40,7 @@ const MovieIdPage = () => {
     getTrailer()
   }, [id])
 
+  console.log(trailer)
   return (
     <>
       {movie.errorMessage ? (
@@ -47,18 +49,13 @@ const MovieIdPage = () => {
         <div className={styles.movieIdPage}>
           <div className={styles.movieIdPage__container}>
             <div className={styles.movieIdPage__leftside}>
-              {trailer.linkEmbed ? (
+              {trailer.videoId ? (
+                <YoutubePlayer videoId={trailer.videoId} />
+              ) : (
                 <img
                   className={styles.movieIdPage__img}
                   src={movie.image}
                   alt=''
-                />
-              ) : (
-                <iframe
-                  height='500px'
-                  width='100%'
-                  src={trailer.linkEmbed}
-                  title={trailer.title}
                 />
               )}
             </div>

@@ -29,12 +29,7 @@ type Trailer = {
   type: string
   year: string
   videoId: string
-  videoTitle: string
-  videoDescription: string
-  thumbnailUrl: string
-  uploadDate: string
-  link: string
-  linkEmbed: string
+  videoUrl: string
   errorMessage: string
 }
 

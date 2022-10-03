@@ -2,6 +2,7 @@ import ContentLoader from 'react-content-loader'
 
 const SkeletonMovieCard: React.FC = () => (
   <ContentLoader
+    className=''
     speed={2}
     width={162}
     height={280}

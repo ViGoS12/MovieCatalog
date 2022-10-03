@@ -44,6 +44,7 @@ const Home: React.FC = () => {
     getTop250Movies()
   }, [])
 
+  console.log(top250Movies)
   return (
     <div className={styles.home}>
       <div className='app__container'>
